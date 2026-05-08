@@ -11,7 +11,7 @@ The implementation follows ISO‑8601 rules:
 ## Target Framework
 
 .NET 6 or later
-Requires System.Globalization
+Requires `System.Globalization`
 
 ## Features
 
@@ -24,8 +24,6 @@ Requires System.Globalization
 - Stable, sortable string representation (`YYYY-Www`)
 - Immutable design
 
----
-
 ## Week Record Overview
 
 ```csharp
@@ -36,19 +34,19 @@ public sealed record Week :
 
 ## Public Properties
 
-- WeekYear
+- **WeekYear**
   The ISO week‑year (may differ from the calendar year)
-- WeekNumber
+- **WeekNumber**
   The ISO week number (1–53)
-- FirstDateOfWeek
+- **FirstDateOfWeek**
   The Monday of the week
-- LastDateOfWeek
+- **LastDateOfWeek**
   The Sunday of the week
 
 ## Usage Examples
 Create a week from a DateTime
 
-```
+```csharp
 var week = new Week(DateTime.UtcNow);
 
 Console.WriteLine(week.WeekYear);
@@ -58,7 +56,7 @@ Console.WriteLine(week); // e.g. "2026-W19"
 
 Create a week from year and week number
 
-```
+```csharp
 var week = new Week(2026, 19);
 
 Console.WriteLine(week.FirstDateOfWeek);
@@ -67,8 +65,7 @@ Console.WriteLine(week.LastDateOfWeek);
 
 ## Comparison and ordering
 
-```
-
+```csharp
 var w1 = new Week(2026, 10);
 var w2 = new Week(2026, 20);
 
@@ -80,15 +77,16 @@ if (w1 < w2)
 
 Supported operators:
 
-- <
-- <=
-- >
-- >=
+```
+<
+<=
+>
+>=
+```
   
 Equality (value object behavior)
 
-```
-
+```csharp
 var a = new Week(2025, 52);
 var b = new Week(new DateTime(2025, 12, 28));
 
@@ -100,7 +98,7 @@ bool equals = a.Equals(b); // true
 Calling ToString() returns a sortable ISO‑style string:
 - YYYY-Www
 
-```
+```csharp
 new Week(2023, 2).ToString(); // "2023-W02"
 ```
 
